@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import logo from "/assets/logoo.svg";
 import hola from "/assets/hola.png";
 import video from "/assets/video.mp4";
-import ReactPlayer from "react-player";
-import { Controller, set, useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { FaCircleExclamation } from 'react-icons/fa6';
 import { IoIosCloseCircle } from 'react-icons/io';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
@@ -118,16 +117,16 @@ function App() {
           </h6>
         </footer>
         
-        { hiddin && <><button onClick={()=>{console.log('fff'); setbig(!big)}} className={`bg-black overflow-hidden hover:scale-105 text-white transition items-center justify-center fixed z-40 ${big? "w-full max-w-sm h-[500px]  mx-auto my-auto rounded-lg ":'w-[120px] h-[120px] rounded-full bottom-8 md:bottom-12 right-8 md:left-12'}`}>
+        { hiddin && <><button onClick={()=>{ setbig(!big)}} className={`bg-black overflow-hidden hover:scale-105 text-white transition items-center justify-center fixed z-40 ${big? "w-full max-w-sm h-[500px]  mx-auto my-auto rounded-lg ":'w-[120px] h-[120px] rounded-full bottom-8 md:bottom-12 left-8 md:left-12'}`}>
           <video  src={video} muted  width={big? 384 : 120}  height={big? 500 : 120}  autoPlay={true} preload="auto"/>
         </button>
         <button
             type="button"
-            className={`fixed z-40  outline-none ${big? "top-8 right-[580px]": "bottom-36 left-36"}`}
+            className={`fixed z-40  outline-none ${big? "top-8  lg:right-[580px]": "bottom-36 left-32 md:left-36"}`}
             onClick={()=>{
               sethiddin(!hiddin)
             }}
-          >
+          > 
             <IoIosCloseCircle className="text-red-600 text-xl"/>
           </button></>}
         
