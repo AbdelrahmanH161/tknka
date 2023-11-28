@@ -6,6 +6,7 @@ import { Controller, useForm } from "react-hook-form";
 import { FaCircleExclamation } from 'react-icons/fa6';
 import { IoIosCloseCircle } from 'react-icons/io';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import axios from "axios";
 function App() {
   const [dis, setdis] = useState(true);
   const [show, setshow] = useState(false);
@@ -14,7 +15,26 @@ function App() {
   const {register,handleSubmit,watch,formState: { errors },control} = useForm({
     mode:'all'
   })
-  const onSubmit = (data) => console.log(data)
+  const onSubmit = (data) => {test()}
+
+  const test =async ()=>{
+    let x = await axios.post(
+      'https://dashboard.homzy.co.za/api/orders/scan_qr/7c948df9805a7968a52fb2c0fe7d27b4ab9da600',
+      {},
+      {
+        headers: {
+          Authorization:
+            'Basic MGQwM2QzMWFkZGNlNjljYjc0MjY1NDZhZWU0YzA4MTcyYjlkYWJhMTpGN1FtUVR1ZldKd2Q5Q2JOUlZTQllBY3RXOWd5dUFYOFZuS0VLUzlockkwWEVrM2Z4OEVwUWViV0t0V1BrQ1Z5YmRXczR3MTBXZGc4Sk9ROEI1dllkRWVNM2tYWElIVWtQV24zaDYzTlNINWpGVmx5dDcyMVZBeDliYUU=',
+          WF_USER_TOKEN:
+            'e0b88c3f5fcdf9a92fdb7fc25e477b598d68ac35aebd60b4dae4d0dd2218f0cc',
+          WF_USER_SECRET:
+            '381b4c0c1ea784bf990bb0b067732fc34fd7a8db791d9ab858f410f7276d4457',
+        },
+      }
+    )
+    console.log(x);
+  }
+
   useEffect(()=>{
     if(watch('email') && watch('password')){
       setdis(false)
@@ -39,7 +59,7 @@ function App() {
                 <Controller
                 name={'email'}
                 control={control}
-                rules={{required:true}}
+                rules={{}}
                 render={({ field: { onChange, onBlur, value, name, ref }, fieldState, formState }) => (
                   <input
                   className={`min-h-[50px] w-full rounded-[10px]  px-3  placeholder:text-gray-400 text-[16px] outline-none placeholder:text-start md:min-h-[60px] md:text-[20px] ${errors.email ? 'border-red-500 text-red-500 placeholder:text-red-500' : "border-[#088FC4]"}`}
@@ -61,7 +81,7 @@ function App() {
                   <Controller
                     name={'password'}
                     control={control}
-                    rules={{required:true}}
+                    rules={{}}
                     render={({ field: { onChange, onBlur, value, name, ref }, fieldState, formState }) => (
                       <input
                       className={`min-h-[50px] w-full rounded-[10px]  px-3  placeholder:text-gray-400 text-[16px] outline-none placeholder:text-start md:min-h-[60px] md:text-[20px] ${errors.password ? 'border-red-500 text-red-500 placeholder:text-red-500' : "border-[#088FC4]"}`}
